@@ -7,13 +7,9 @@
 # Editor-based HTTP Client requests
 /httpRequests/
 
-# Eclipse
-.classpath
-.project
-.settings/
 
 # Intellij
-.idea/
+.idea
 *.iml
 *.iws
 
