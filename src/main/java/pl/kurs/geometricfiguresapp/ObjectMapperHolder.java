@@ -36,10 +36,10 @@ public enum ObjectMapperHolder {
         sm1.addSerializer(IShape.class, shapeSerializer);
         mapper.registerModule(sm1);
 
-//        ShapeDeserializer shapeDeserializer = new ShapeDeserializer(IShape.class);
-//        SimpleModule sm2 = new SimpleModule();
-//        sm2.addDeserializer(IShape.class, shapeDeserializer);
-//        mapper.registerModule(sm2);
+        ShapeDeserializer shapeDeserializer = new ShapeDeserializer(IShape.class);
+        SimpleModule sm2 = new SimpleModule();
+        sm2.addDeserializer(IShape.class, shapeDeserializer);
+        mapper.registerModule(sm2);
 
         return mapper;
     }
