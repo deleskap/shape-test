@@ -31,10 +31,10 @@ public enum ObjectMapperHolder {
         mapper.findAndRegisterModules();
         mapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
 
-//        ShapeSerializer shapeSerializer = new ShapeSerializer(IShape.class);
-//        SimpleModule sm1 = new SimpleModule();
-//        sm1.addSerializer(IShape.class, shapeSerializer);
-//        mapper.registerModule(sm1);
+        ShapeSerializer shapeSerializer = new ShapeSerializer(IShape.class);
+        SimpleModule sm1 = new SimpleModule();
+        sm1.addSerializer(IShape.class, shapeSerializer);
+        mapper.registerModule(sm1);
 
 //        ShapeDeserializer shapeDeserializer = new ShapeDeserializer(IShape.class);
 //        SimpleModule sm2 = new SimpleModule();

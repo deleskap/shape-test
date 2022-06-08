@@ -25,23 +25,23 @@ public class ShapeSerializer extends StdSerializer<IShape> {
 
 
 
-       // jsonGenerator.writeRawValue(shape);
 
-//        if(shape.getClass().equals(Square.class)){
-//            jsonGenerator.writeNumberField("length", ((Square) shape).getA());
-//        }
-//
-//        if(shape.getClass().equals(Circle.class)){
-//            jsonGenerator.writeNumberField("radius", ((Circle) shape).getR());
-//        }
-//
-//        if(shape.getClass().equals(Rectangle.class)){
-//            jsonGenerator.writeNumberField("length", ((Rectangle) shape).getA());
-//            jsonGenerator.writeNumberField("width", ((Rectangle) shape).getB());
-//        }
 
-//        jsonGenerator.writeNumberField("area", shape.getArea());
-//        jsonGenerator.writeNumberField("perimeter", shape.getPerimeter());
+        if(shape.getClass().equals(Square.class)){
+            jsonGenerator.writeNumberField("length", ((Square) shape).getA());
+        }
+
+        if(shape.getClass().equals(Circle.class)){
+            jsonGenerator.writeNumberField("radius", ((Circle) shape).getR());
+        }
+
+        if(shape.getClass().equals(Rectangle.class)){
+            jsonGenerator.writeNumberField("length", ((Rectangle) shape).getA());
+            jsonGenerator.writeNumberField("width", ((Rectangle) shape).getB());
+        }
+
+        jsonGenerator.writeNumberField("area", shape.getArea());
+        jsonGenerator.writeNumberField("perimeter", shape.getPerimeter());
 
         jsonGenerator.writeEndObject();
     }
