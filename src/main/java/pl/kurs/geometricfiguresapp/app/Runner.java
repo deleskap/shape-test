@@ -1,5 +1,6 @@
 package pl.kurs.geometricfiguresapp.app;
 
+import pl.kurs.geometricfiguresapp.ObjectMapperHolder;
 import pl.kurs.geometricfiguresapp.classes.Circle;
 import pl.kurs.geometricfiguresapp.classes.Rectangle;
 import pl.kurs.geometricfiguresapp.classes.Square;
@@ -40,9 +41,19 @@ public class Runner {
         List<IShape> list2 = null;
         List<IShape> list3 = new ArrayList<IShape>();
 
+
         shapesService.exportJson(list1,"src/main/resources/exporttest.json");
-//        List<IShape> imported = shapesService.importJson("src/main/resources/exporttest.json");
-//        System.out.println(imported);
+        //List<IShape> imported = shapesService.importJson("src/main/resources/exporttest.json");
+        //System.out.println(imported);
+//        imported.get(0).getArea();
+//        Circle circle = (Circle) imported.get(0);
+//
+//        System.out.println("c1.getR() = " + c1.getR());
+//
+//
+//        System.out.println("circle.getR() = " + circle.getR());
+//        System.out.println("circle.getArea() = " + circle.getArea());
+//        System.out.println("circle.getPerimeter() = " + circle.getPerimeter());
 
 //        IShape largestAreaShape1 = shapesService.getLargestArea(list1);
 //        System.out.println("largestAreaShape1.getArea() = " + largestAreaShape1.getArea());

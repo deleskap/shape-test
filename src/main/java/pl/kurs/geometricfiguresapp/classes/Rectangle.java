@@ -1,21 +1,30 @@
 package pl.kurs.geometricfiguresapp.classes;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import pl.kurs.geometricfiguresapp.interfaces.IShape;
 
 import java.io.Serializable;
 
+
+@JsonTypeName("rectangle")
 public class Rectangle implements IShape{
+
     private double a;
     private double b;
+//    private String type;
+
+    public Rectangle() {
+    }
 
     public Rectangle(double a, double b) {
         this.a = a;
         this.b = b;
+//        this.type= this.getClass().getSimpleName();
     }
 
-    public String getType(){
-        return this.getClass().getSimpleName();
-    }
+//    public String getType(){
+//        return this.getClass().getSimpleName();
+//    }
 
 
     public double getA() {
