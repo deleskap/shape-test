@@ -25,7 +25,7 @@ public class Runner {
         Square s2 = new Square(4);
         Square s3 = new Square(9);
 
-        List<IShape> list1 = new ArrayList<IShape>();
+        List<IShape> list1 = new ArrayList<>();
         list1.add(c1);
         list1.add(c2);
         list1.add(c3);
@@ -39,12 +39,12 @@ public class Runner {
 
 
         List<IShape> list2 = null;
-        List<IShape> list3 = new ArrayList<IShape>();
+        List<IShape> list3 = new ArrayList<>();
 
 
         shapesService.exportJson(list1,"src/main/resources/exporttest.json");
-        //List<IShape> imported = shapesService.importJson("src/main/resources/exporttest.json");
-        //System.out.println(imported);
+        List<IShape> imported = shapesService.importJson("src/main/resources/exporttest.json");
+        System.out.println(imported);
 //        imported.get(0).getArea();
 //        Circle circle = (Circle) imported.get(0);
 //

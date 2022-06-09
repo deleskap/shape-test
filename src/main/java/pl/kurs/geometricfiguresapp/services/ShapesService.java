@@ -4,7 +4,10 @@ import com.fasterxml.jackson.core.*;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.databind.util.JSONPObject;
+
 import com.sun.jdi.ClassType;
 import pl.kurs.geometricfiguresapp.ObjectMapperHolder;
 import pl.kurs.geometricfiguresapp.classes.Circle;
@@ -14,6 +17,7 @@ import pl.kurs.geometricfiguresapp.interfaces.IShape;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.nio.file.Path;
 import java.util.*;
 
@@ -47,21 +51,20 @@ public class ShapesService {
     }
 
     public void exportJson (List<IShape> shapeList, String path) throws IOException {
-        ObjectNode on = objectMapper.createObjectNode();
-
-        for (int i=0; i<shapeList.size();i++){
-            String str = objectMapper.writeValueAsString(shapeList.get(i));
-            on.putObject(objectMapper.writeValueAsString(shapeList.get(i)));
+//
+        ArrayNode arrayNode = objectMapper.createArrayNode();
+        for (IShape iShape : shapeList) {
+            JsonNode jn = objectMapper.valueToTree(iShape);
+            arrayNode.add(jn);
         }
-        System.out.println(on);
+        objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File(path), arrayNode);
 
     }
     public List<IShape> importJson (String path) throws IOException {
         JsonNode jn1 = objectMapper.readTree(new File(path));
         try {
-            List<IShape> importList = objectMapper.readValue(new File(path), objectMapper.getTypeFactory().constructCollectionType(
+            return objectMapper.readValue(new File(path), objectMapper.getTypeFactory().constructCollectionType(
                     List.class, IShape.class));
-            return importList;
         } catch (IOException e) {
             e.printStackTrace();
         }
