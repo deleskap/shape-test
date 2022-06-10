@@ -1,6 +1,6 @@
 package pl.kurs.geometricfiguresapp.app;
 
-import pl.kurs.geometricfiguresapp.ObjectMapperHolder;
+
 import pl.kurs.geometricfiguresapp.classes.Circle;
 import pl.kurs.geometricfiguresapp.classes.Rectangle;
 import pl.kurs.geometricfiguresapp.classes.Square;
