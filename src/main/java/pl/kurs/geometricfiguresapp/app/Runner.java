@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Runner {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         ShapesService shapesService = new ShapesService();
 
         Circle c1= new Circle(3);
@@ -40,11 +40,38 @@ public class Runner {
 
         List<IShape> list2 = null;
         List<IShape> list3 = new ArrayList<>();
+        list3.add(null);
 
 
-        shapesService.exportJson(list1,"src/main/resources/exporttest.json");
-        List<IShape> imported = shapesService.importJson("src/main/resources/exporttest.json");
-        System.out.println(imported);
+        try {
+            shapesService.exportJson(list3,"src/main/resources/exporttest1.json");
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+//        List<IShape> imported1 = shapesService.importJson("src/main/resources/exporttest1.json");
+//        System.out.println(imported1);
+
+
+
+//        try{
+//            shapesService.exportJson(list2,"src/main/resources/exporttest2.json");
+//            List<IShape> imported2  = shapesService.importJson("src/main/resources/exporttest2.json");
+//            System.out.println(imported2);}
+//        catch (NullPointerException e){
+//            e.printStackTrace();
+//        }
+//
+//
+//
+//        shapesService.exportJson(list3,"src/main/resources/exporttest3.json");
+//        List<IShape> imported3 = shapesService.importJson("src/main/resources/exporttest3.json");
+//        System.out.println(imported3);
+
 //        imported.get(0).getArea();
 //        Circle circle = (Circle) imported.get(0);
 //

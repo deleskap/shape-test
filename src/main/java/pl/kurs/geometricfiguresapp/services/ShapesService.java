@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.*;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.exc.InvalidTypeIdException;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.util.JSONPObject;
@@ -50,26 +51,37 @@ public class ShapesService {
 
     }
 
-    public void exportJson (List<IShape> shapeList, String path) throws IOException {
-//
+    public void exportJson (List<IShape> shapeList, String path) throws NullPointerException, IOException {
+        if(shapeList==null | path==null ){
+            throw new NullPointerException("Null input parameter provided");
+        }
+
+
+
         ArrayNode arrayNode = objectMapper.createArrayNode();
         for (IShape iShape : shapeList) {
+//            if(iShape!=null)                                      Opcja bez zapisywania nulla do jsona, jeśli isntnieje na liście
+//            {JsonNode jn = objectMapper.valueToTree(iShape);
+//            arrayNode.add(jn);}
             JsonNode jn = objectMapper.valueToTree(iShape);
             arrayNode.add(jn);
         }
+
         objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File(path), arrayNode);
+
 
     }
     public List<IShape> importJson (String path) throws IOException {
         JsonNode jn1 = objectMapper.readTree(new File(path));
+
         try {
             return objectMapper.readValue(new File(path), objectMapper.getTypeFactory().constructCollectionType(
                     List.class, IShape.class));
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch(InvalidTypeIdException e){
+            throw new IOException("Nie rozpoznano typu");
         }
 
-        return null;
+
     }
 
 }
