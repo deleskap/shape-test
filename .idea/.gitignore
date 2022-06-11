@@ -4,7 +4,7 @@
 
 #resources/
 src/main/resources/
-
+target/
 # Intellij
 .idea
 *.iml
