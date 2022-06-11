@@ -1,40 +1,39 @@
-package pl.kurs.geometricfiguresapp.classes;
+package pl.kurs.geometricfiguresapp.models;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import pl.kurs.geometricfiguresapp.interfaces.IShape;
 
+import java.util.Objects;
+
 @JsonTypeName("square")
 public class Square implements IShape {
     private double a;
-//    private String type;
 
     public Square() {
     }
 
     public Square(double a) {
         this.a = a;
-//        this.type= this.getClass().getSimpleName();
+
     }
-
-//
-//    public String getType(){
-//        return this.getClass().getSimpleName();
-//    }
-
 
     public double getA() {
         return a;
     }
 
+    public void setA(double a) {
+        this.a = a;
+    }
+
     @Override
     public double getArea() {
-        return a*a;
+        return a * a;
     }
 
     @Override
     public double getPerimeter() {
 
-        return 4*a;
+        return 4 * a;
     }
 
     @Override
@@ -42,5 +41,18 @@ public class Square implements IShape {
         return "Square{" +
                 "a=" + a +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Square square = (Square) o;
+        return Double.compare(square.a, a) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(a);
     }
 }

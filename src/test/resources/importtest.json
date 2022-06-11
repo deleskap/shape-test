@@ -1,0 +1,13 @@
+[ {
+  "type" : "rectangle",
+  "a" : 2.0,
+  "b" : 5.0,
+  "perimeter" : 14.0,
+  "area" : 10.0
+}, {
+  "type" : "square",
+  "a" : 3.0,
+  "perimeter" : 12.0,
+  "area" : 9.0
+}
+]

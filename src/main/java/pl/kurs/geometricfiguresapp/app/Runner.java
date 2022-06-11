@@ -1,12 +1,13 @@
 package pl.kurs.geometricfiguresapp.app;
 
 
-import pl.kurs.geometricfiguresapp.classes.Circle;
-import pl.kurs.geometricfiguresapp.classes.Rectangle;
-import pl.kurs.geometricfiguresapp.classes.Square;
+import pl.kurs.geometricfiguresapp.models.Circle;
+import pl.kurs.geometricfiguresapp.models.Rectangle;
+import pl.kurs.geometricfiguresapp.models.Square;
 import pl.kurs.geometricfiguresapp.interfaces.IShape;
 import pl.kurs.geometricfiguresapp.services.ShapesService;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,12 +16,12 @@ public class Runner {
     public static void main(String[] args) {
         ShapesService shapesService = new ShapesService();
 
-        Circle c1= new Circle(3);
+        Circle c1 = new Circle(3);
         Circle c2 = new Circle(4);
         Circle c3 = new Circle(5);
-        Rectangle r1 = new Rectangle(3,4);
-        Rectangle r2 = new Rectangle(3,5);
-        Rectangle r3 = new Rectangle(2,5);
+        Rectangle r1 = new Rectangle(3, 4);
+        Rectangle r2 = new Rectangle(3, 5);
+        Rectangle r3 = new Rectangle(2, 5);
         Square s1 = new Square(3);
         Square s2 = new Square(4);
         Square s3 = new Square(9);
@@ -42,68 +43,22 @@ public class Runner {
         List<IShape> list3 = new ArrayList<>();
         list3.add(null);
 
-
         try {
-            shapesService.exportJson(list3,"src/main/resources/exporttest1.json");
-        } catch (NullPointerException e) {
+            shapesService.exportJson(list1, "src/main/resources/exporttest1.json");
+        } catch (Exception e) {
             e.printStackTrace();
             System.out.println(e.getMessage());
+        }
+
+        try {
+            List<IShape> imported1 = shapesService.importJson("src/main/resources/exporttest1.json");
+            System.out.println(imported1);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-//        List<IShape> imported1 = shapesService.importJson("src/main/resources/exporttest1.json");
-//        System.out.println(imported1);
-
-
-
-//        try{
-//            shapesService.exportJson(list2,"src/main/resources/exporttest2.json");
-//            List<IShape> imported2  = shapesService.importJson("src/main/resources/exporttest2.json");
-//            System.out.println(imported2);}
-//        catch (NullPointerException e){
-//            e.printStackTrace();
-//        }
-//
-//
-//
-//        shapesService.exportJson(list3,"src/main/resources/exporttest3.json");
-//        List<IShape> imported3 = shapesService.importJson("src/main/resources/exporttest3.json");
-//        System.out.println(imported3);
-
-//        imported.get(0).getArea();
-//        Circle circle = (Circle) imported.get(0);
-//
-//        System.out.println("c1.getR() = " + c1.getR());
-//
-//
-//        System.out.println("circle.getR() = " + circle.getR());
-//        System.out.println("circle.getArea() = " + circle.getArea());
-//        System.out.println("circle.getPerimeter() = " + circle.getPerimeter());
-
-//        IShape largestAreaShape1 = shapesService.getLargestArea(list1);
-//        System.out.println("largestAreaShape1.getArea() = " + largestAreaShape1.getArea());
-//        System.out.println("largestAreaShape1.getPerimeter() = " + largestAreaShape1.getPerimeter());
-
-//        IShape largestAreaShape2 = shapesService.getLargestArea(list2);
-//        System.out.println("largestAreaShape2.getArea() = " + largestAreaShape2.getArea());
-//        System.out.println(
-//        "largestAreaShape2.getPerimeter() = " + largestAreaShape2.getPerimeter());
-
-//        IShape largestAreaShape3 = shapesService.getLargestArea(list3);
-//        System.out.println("largestAreaShape3.getArea() = " + largestAreaShape3.getArea());
-//        System.out.println("largestAreaShape3.getPerimeter() = " + largestAreaShape3.getPerimeter());
-
-//        try {
-//        IShape largestPerimeterShape = shapesService.getLargestPerimeterOfType(list1, IShape.class);
-//        System.out.println("largestPerimeterShape.getPerimeter() = " + largestPerimeterShape.getPerimeter());}
-//        catch (RuntimeException e) {
-//            e.printStackTrace();
-//        }
-
-//
-//        IShape largestPerimeterShape2 = shapesService.getLargestPerimeterOfType(list3, Circle.class);
-//        System.out.println("largestPerimeterShape2.getPerimeter() = " + largestPerimeterShape2.getPerimeter());
+        //new File("src/main/resources/exporttest1.json").delete();
+        IShape largestAreaShape1 = shapesService.getLargestArea(list1);
+        System.out.println("largestAreaShape1.getArea() = " + largestAreaShape1.getArea());
+        System.out.println("largestAreaShape1.getPerimeter() = " + largestAreaShape1.getPerimeter());
     }
 }

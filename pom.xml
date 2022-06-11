@@ -3,7 +3,6 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>pl.kurs</groupId>
     <artifactId>GeometricFigures</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -11,10 +10,6 @@
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-
-
-
-
     </properties>
 
     <dependencies>
@@ -30,8 +25,83 @@
             <scope>test</scope>
         </dependency>
 
-
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.6</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>target/jacoco-report</outputDirectory>
+                            <excludes>
+                                <!--                                <exclude>**/*pl/kurs/models/Car.class</exclude>  to wyklucza poszczególną klasę-->
+                                <exclude>**/*pl/kurs/geometricfiguresapp/models/*</exclude>
+                                <exclude>**/*pl/kurs/geometricfiguresapp/app/*</exclude>
+                                <exclude>**/*pl/kurs/geometricfiguresapp/interfaces/*</exclude>
+                                <exclude>**/*pl/kurs/geometricfiguresapp/ObjectMapperHolder.class</exclude>
+                            </excludes>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>jacoco-check</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <configuration>
+                            <excludes>
+                                <!--   <exclude>**/*pl/kurs/models/Car.class</exclude>  to wyklucza poszczególną klasę-->
+                                <exclude>**/*pl/kurs/geometricfiguresapp/models/*</exclude>
+                                <exclude>**/*pl/kurs/geometricfiguresapp/app/*</exclude>
+                                <exclude>**/*pl/kurs/geometricfiguresapp/interfaces/*</exclude>
+                                <exclude>**/*pl/kurs/geometricfiguresapp/ObjectMapperHolder.class</exclude>
 
+                            </excludes>
+                            <rules>
+                                <rule>
+                                    <element>PACKAGE</element>
+                                    <limits>
+                                        <limit>
+                                            <counter>LINE</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>0.80</minimum>
+                                        </limit>
+                                        <limit>
+                                            <counter>BRANCH</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>0.80</minimum>
+                                        </limit>
+                                        <limit>
+                                            <counter>METHOD</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>0.80</minimum>
+                                        </limit>
+                                        <limit>
+                                            <counter>CLASS</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>0.80</minimum>
+                                        </limit>
+                                    </limits>
+                                </rule>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>

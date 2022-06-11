@@ -3,9 +3,9 @@ package pl.kurs.geometricfiguresapp.interfaces;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import pl.kurs.geometricfiguresapp.classes.Circle;
-import pl.kurs.geometricfiguresapp.classes.Rectangle;
-import pl.kurs.geometricfiguresapp.classes.Square;
+import pl.kurs.geometricfiguresapp.models.Circle;
+import pl.kurs.geometricfiguresapp.models.Rectangle;
+import pl.kurs.geometricfiguresapp.models.Square;
 
 @JsonTypeInfo(
         use = JsonTypeInfo.Id.NAME,
@@ -15,6 +15,7 @@ import pl.kurs.geometricfiguresapp.classes.Square;
         @JsonSubTypes.Type(value = Rectangle.class, name = "rectangle"),
         @JsonSubTypes.Type(value = Square.class, name = "square")})
 public interface IShape {
-    double getArea ();
+    double getArea();
+
     double getPerimeter();
 }

@@ -1,0 +1,8 @@
+[ {
+  "type" : "rectangle",
+  "a" : "trapezoid",
+  "b" : 5.0,
+  "perimeter" : 14.0,
+  "area" : 10.0
+}
+]

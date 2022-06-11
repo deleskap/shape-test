@@ -1,32 +1,29 @@
-package pl.kurs.geometricfiguresapp.classes;
+package pl.kurs.geometricfiguresapp.models;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import pl.kurs.geometricfiguresapp.interfaces.IShape;
 
+import java.util.Objects;
+
 
 @JsonTypeName("circle")
 public class Circle implements IShape {
-
     private double r;
-
 
     public Circle() {
     }
 
     public Circle(double r) {
         this.r = r;
-//        this.type= this.getClass().getSimpleName();
     }
 
-
-//    public String getType(){
-//        return this.getClass().getSimpleName();
-//    }
+    public void setR(double r) {
+        this.r = r;
+    }
 
     public double getR() {
         return r;
     }
-
 
     @Override
     public double getArea() {
@@ -43,5 +40,18 @@ public class Circle implements IShape {
         return "Circle{" +
                 "r=" + r +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Circle circle = (Circle) o;
+        return Double.compare(circle.r, r) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(r);
     }
 }
