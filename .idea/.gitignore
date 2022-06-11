@@ -4,12 +4,11 @@
 
 #resources/
 src/main/resources/
-target/
+
 # Intellij
-.idea
+.idea/
 *.iml
 *.iws
 
 # Maven
-log/
-target/
+src/target/
