@@ -144,6 +144,7 @@ public class ShapesServiceTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        file1.delete();
 
         assertEquals("square", jn.get(6).get("type").asText());
         assertEquals(3, jn.get(6).get("a").asDouble(), 0);
